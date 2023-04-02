@@ -21,7 +21,7 @@ additional things to blog content
 - use more transition words for improving readability
 - use shorter sentences, using less difficult words to improve readability.
 - use some external reference links (about 1 - 10)
-- only use '<br>' for next line, do not use '\\n'
+- only use '<br>' for next line, do not use '\n'
 
 ---
 
