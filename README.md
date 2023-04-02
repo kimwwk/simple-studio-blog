@@ -7,3 +7,7 @@
 3. remove the site /blog
 4. automate the upload process
 5. improve the algorithm
+
+## ideas
+
+1. referenced to exisitng popular blogger

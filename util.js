@@ -8,7 +8,7 @@ const parseJSON = (jsonString) => {
     if (error instanceof SyntaxError) {
       logger.warn("utils parseJSON met a SyntaxError:", error);
 
-      let updatedJsonString = jsonString.replace(/\\n|[\n]/g, "");
+      let updatedJsonString = jsonString.replace(/\\n|\\r|[\n\r]/g, "");
 
       logger.warn("utils parseJSON updatedJsonString:", updatedJsonString);
 

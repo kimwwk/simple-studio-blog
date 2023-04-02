@@ -5,10 +5,13 @@ import readline from "readline";
 import "./config.js";
 
 import { createNewPost } from "./lib-wordpress.js";
-import { getBlogBasicInfo } from "./lib-openai.js";
-import { readFileAndPutLinesInArray } from "./lib-fs.js";
-import { parseJSON } from "./util.js";
+import { generatePostByOpenai } from "./lib-openai.js";
+import { readFileAndPutLinesInArray, readFileContent } from "./lib-fs.js";
 import logger from "./logger.js";
+
+// env variables
+const TOPIC_FILE_PATH = process.env.TOPIC_FILE_PATH;
+const PROMPT_FILE_PATH = process.env.PROMPT_FILE_PATH;
 
 // Create a readline interface for user input and output
 const rl = readline.createInterface({
@@ -23,26 +26,14 @@ function question(prompt) {
   });
 }
 
-async function generatePostByAi(topic) {
-  logger.info("Topic to generate:", topic);
-
-  const getBlogBasicInfoResult = await getBlogBasicInfo(topic);
-
-  logger.info("Fetched getBlogBasicInfo result:", getBlogBasicInfoResult);
-
-  const json = parseJSON(getBlogBasicInfoResult.trim());
-
-  return json;
-}
-
 async function createNewPostToWordPress(json) {
-  const createNewPostResults = await createNewPost(
+  const results = await createNewPost(
     json.title,
     json.content,
     json.meta,
     [5, 4]
   );
-  logger.info("Fetched createNewPost id:", createNewPostResults.id);
+  logger.info("Fetched createNewPost results id:", results.id);
 
   logger.info("Successfully created 1 new post");
 }
@@ -52,17 +43,21 @@ async function main() {
   try {
     const inputFileName = await question("Welcome! Please enter input file: ");
 
-    const inputFile = process.env.TOPIC_FILE_PATH + inputFileName;
+    const inputFile = TOPIC_FILE_PATH + inputFileName;
 
-    logger.info("InputFile: ", inputFile);
+    logger.info("Input file:", inputFile);
+
+    const prompt = await readFileContent(PROMPT_FILE_PATH);
+
+    logger.info("Target prompt:", prompt);
 
     const lines = await readFileAndPutLinesInArray(inputFile);
 
-    logger.info("Lines length:", lines.length);
-    logger.info("Lines result:", lines);
+    logger.info("Target lines length:", lines.length);
+    logger.info("Target lines result:", lines);
 
     for (const line of lines) {
-      const item = await generatePostByAi(line);
+      const item = await generatePostByOpenai(prompt, line);
       await createNewPostToWordPress(item);
     }
 
