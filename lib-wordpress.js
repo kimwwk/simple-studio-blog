@@ -10,10 +10,11 @@ async function getPostList() {
   // Create an axios instance with the required authentication
   const wpApi = axios.create({
     baseURL: WP_API_URL,
+    headers: { Authorization: "Bearer " + WP_JWT_TOKEN },
   });
 
   // Make a GET request to the WordPress REST API to fetch the post list
-  const response = await wpApi.get("/wp/v2/posts/54");
+  const response = await wpApi.get("/wp/v2/posts");
 
   // Return the list of posts
   return response.data;
@@ -24,7 +25,7 @@ async function createNewPost(
   title,
   content,
   metaDescription = "",
-  categories = [5],
+  categories = [],
   status = "publish"
 ) {
   // Create an axios instance with the required authentication

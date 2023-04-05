@@ -1,5 +1,5 @@
 import JSON5 from "json5";
-import logger from "./logger.js";
+import logger from "./singletons/logger.js";
 
 const parseJSON = (jsonString) => {
   try {

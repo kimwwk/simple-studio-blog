@@ -1,7 +1,7 @@
 import axios from "axios";
 import { parseJSON } from "./util.js";
 
-import logger from "./logger.js";
+import logger from "./singletons/logger.js";
 
 const OPENAI_ENDPOINT = process.env.OPENAI_ENDPOINT;
 // const OPENAI_ORG = process.env.OPENAI_ORG;
