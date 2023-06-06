@@ -12,7 +12,7 @@ async function createNewPostToWordPress(json) {
     json.title,
     json.content,
     json.meta,
-    [5, 4]
+    [5, 6]
   );
   logger.info("Fetched createNewPost results id:", results.id);
 
@@ -39,6 +39,15 @@ const createPostsByAi = async (inputFileName) => {
   }
 };
 
+const createPostByAi = async (topicName) => {
+  const prompt = await readFileContent(PROMPT_FILE_PATH);
+
+  logger.info("Target prompt:", prompt);
+
+  const item = await generatePostByOpenai(prompt, topicName);
+  await createNewPostToWordPress(item);
+};
+
 const getPosts = async () => {
   const results = await getPostList();
 
@@ -48,4 +57,4 @@ const getPosts = async () => {
   return results;
 };
 
-export { createPostsByAi, getPosts };
+export { createPostsByAi, createPostByAi, getPosts };

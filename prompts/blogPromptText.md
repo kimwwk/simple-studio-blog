@@ -16,10 +16,11 @@ ${topic}
 
 additional things to blog content
 
+- the topic doesnt mean the title. create a interesting blog title with strong SEO
 - put the text in a format that easier for me to copy to Wordpress editor
 - add some sub header
 - use more transition words for improving readability
-- use shorter sentences, using less difficult words to improve readability.
+- use shorter sentences, using less difficult words to improve readability
 - use some external reference links (about 1 - 10)
 - only use '<br>' for next line, do not use '\n'
 

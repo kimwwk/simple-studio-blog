@@ -14,7 +14,7 @@ async function getPostList() {
   });
 
   // Make a GET request to the WordPress REST API to fetch the post list
-  const response = await wpApi.get("/wp/v2/posts");
+  const response = await wpApi.get("/wp/v2/posts?per_page=100");
 
   // Return the list of posts
   return response.data;
