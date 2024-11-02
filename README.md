@@ -13,11 +13,11 @@ It's an instruction-based JavaScript application designed for local use, with a 
 
 ## File Structure Highlights
 
-**`topics/:`** Contains lists of topics for blog post generation.
-**`prompts/:`** Contains prompt templates for generating blog content.
-**`simple-studio/:`** Core application logic for content creation and WordPress interaction.
-**`singletons/:`** Houses utility modules.
-**`index.js:`** Main entry point of the application, handles user input and workflow.
+- **`topics/:`** Contains lists of topics for blog post generation.
+- **`prompts/:`** Contains prompt templates for generating blog content.
+- **`simple-studio/:`** Core application logic for content creation and WordPress interaction.
+- **`singletons/:`** Houses utility modules.
+- **`index.js:`** Main entry point of the application, handles user input and workflow.
 
 ## Installation
 
